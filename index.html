@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Simple Football Manager</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#111;
+    color:white;
+}
+
+.container{
+    display:flex;
+    height:100vh;
+}
+
+.sidebar{
+    width:220px;
+    background:#181818;
+    border-right:2px solid #2a2a2a;
+    padding:20px;
+}
+
+.sidebar h1{
+    font-size:24px;
+    margin-bottom:20px;
+}
+
+.sidebar button{
+    width:100%;
+    margin-bottom:10px;
+    padding:12px;
+    border:none;
+    background:#242424;
+    color:white;
+    cursor:pointer;
+    border-radius:8px;
+    font-size:15px;
+    transition:.2s;
+}
+
+.sidebar button:hover{
+    background:#3a3a3a;
+}
+
+.main{
+    flex:1;
+    padding:20px;
+    overflow-y:auto;
+}
+
+.card{
+    background:#1b1b1b;
+    border:1px solid #2d2d2d;
+    border-radius:10px;
+    padding:15px;
+    margin-bottom:20px;
+}
+
+h2{
+    margin-bottom:15px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th, td{
+    padding:10px;
+    border-bottom:1px solid #2d2d2d;
+    text-align:left;
+}
+
+.player-row:hover{
+    background:#252525;
+}
+
+.green{
+    color:#4cff72;
+}
+
+.red{
+    color:#ff5c5c;
+}
+
+.pitch{
+    width:100%;
+    height:500px;
+    background:#0d5e1d;
+    border-radius:10px;
+    position:relative;
+    border:4px solid white;
+    margin-top:20px;
+}
+
+.player-dot{
+    position:absolute;
+    transform:translate(-50%, -50%);
+    background:white;
+    color:black;
+    padding:6px 8px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:20px;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.badge{
+    background:#242424;
+    padding:10px 15px;
+    border-radius:8px;
+}
+
+.win{
+    color:gold;
+    font-size:26px;
+    margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="sidebar">
+    <h1>FC 26 Lite</h1>
+
+    <button onclick="showScreen('dashboard')">Dashboard</button>
+    <button onclick="showScreen('squad')">Squad</button>
+    <button onclick="showScreen('transfers')">Transfers</button>
+    <button onclick="showScreen('league')">League</button>
+    <button onclick="showScreen('calendar')">Calendar</button>
+
+    <hr style="margin:20px 0;border-color:#333">
+
+    <button onclick="simNext()">Sim Next Match</button>
+    <button onclick="simSeason()">Sim Full Season</button>
+</div>
+
+<div class="main" id="main"></div>
+
+</div>
+
+<script>
+
+const firstNames = [
+"Leo","Luca","Noah","Ethan","Mateo","Kai","Mason","Theo",
+"Julian","Max","Oscar","Ruben","Ivan","Adrian","Dani"
+];
+
+const lastNames = [
+"Silva","Costa","Walker","Miller","Santos","Young","Reed",
+"Lopez","Garcia","Rossi","Cole","Hill","Turner","Foster"
+];
+
+const formations = {
+    "4-3-3":[
+        [50,90],
+        [20,70],[40,70],[60,70],[80,70],
+        [30,50],[50,45],[70,50],
+        [20,25],[50,18],[80,25]
+    ],
+
+    "4-4-2":[
+        [50,90],
+        [20,70],[40,70],[60,70],[80,70],
+        [20,50],[40,50],[60,50],[80,50],
+        [40,20],[60,20]
+    ]
+};
+
+function randomName(){
+    return firstNames[Math.floor(Math.random()*firstNames.length)] + " " +
+    lastNames[Math.floor(Math.random()*lastNames.length)];
+}
+
+function createPlayer(){
+    return {
+        name:randomName(),
+        rating:Math.floor(Math.random()*35)+60
+    }
+}
+
+const leagueTeams = [];
+
+for(let i=0;i<20;i++){
+
+    const team = {
+        name:i===0 ? "Your FC" : "FC " + (i+1),
+        points:0,
+        gf:0,
+        ga:0,
+        players:[]
+    };
+
+    for(let p=0;p<18;p++){
+        team.players.push(createPlayer());
+    }
+
+    leagueTeams.push(team);
+}
+
+const userTeam = leagueTeams[0];
+
+let formation = "4-3-3";
+let currentMatchday = 1;
+let money = 50000000;
+
+const transferPool = [];
+
+for(let i=0;i<30;i++){
+    transferPool.push({
+        ...createPlayer(),
+        value:(Math.floor(Math.random()*20)+5)*1000000
+    });
+}
+
+function avgRating(team){
+    return team.players.reduce((a,b)=>a+b.rating,0)/team.players.length;
+}
+
+function showScreen(screen){
+
+    const main = document.getElementById("main");
+
+    if(screen==="dashboard"){
+
+        main.innerHTML = `
+        <div class="topbar">
+            <div class="badge">Matchday: ${currentMatchday}/38</div>
+            <div class="badge">Money: $${money.toLocaleString()}</div>
+            <div class="badge">Formation: ${formation}</div>
+        </div>
+
+        <div class="card">
+            <h2>Your Club</h2>
+            <p>Club: <b>${userTeam.name}</b></p>
+            <p>Squad Rating: <b>${avgRating(userTeam).toFixed(1)}</b></p>
+            <p>League Position: <b>${getTable().findIndex(t=>t.name===userTeam.name)+1}</b></p>
+        </div>
+
+        ${
+            getTable()[0].name === userTeam.name && currentMatchday > 10
+            ? `<div class="win">🏆 You are leading the league!</div>`
+            : ""
+        }
+        `;
+
+    }
+
+    if(screen==="squad"){
+
+        let rows = "";
+
+        userTeam.players.forEach((p,i)=>{
+            rows += `
+            <tr class="player-row">
+                <td>${i+1}</td>
+                <td>${p.name}</td>
+                <td>${p.rating}</td>
+            </tr>
+            `;
+        });
+
+        const positions = formations[formation];
+
+        let pitchPlayers = "";
+
+        for(let i=0;i<11;i++){
+
+            const p = userTeam.players[i];
+
+            pitchPlayers += `
+            <div class="player-dot"
+            style="left:${positions[i][0]}%; top:${positions[i][1]}%">
+            ${p.name.split(" ")[0]}
+            </div>
+            `;
+        }
+
+        main.innerHTML = `
+        <div class="card">
+            <h2>Formation</h2>
+
+            <button onclick="setFormation('4-3-3')">4-3-3</button>
+            <button onclick="setFormation('4-4-2')">4-4-2</button>
+
+            <div class="pitch">
+                ${pitchPlayers}
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Squad</h2>
+
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Rating</th>
+                </tr>
+
+                ${rows}
+            </table>
+        </div>
+        `;
+    }
+
+    if(screen==="transfers"){
+
+        let rows = "";
+
+        transferPool.forEach((p,i)=>{
+
+            rows += `
+            <tr class="player-row">
+                <td>${p.name}</td>
+                <td>${p.rating}</td>
+                <td>$${p.value.toLocaleString()}</td>
+                <td>
+                    <button onclick="buyPlayer(${i})">
+                    Buy
+                    </button>
+                </td>
+            </tr>
+            `;
+        });
+
+        main.innerHTML = `
+        <div class="card">
+            <h2>Transfer Market</h2>
+
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Rating</th>
+                    <th>Value</th>
+                    <th></th>
+                </tr>
+
+                ${rows}
+            </table>
+        </div>
+        `;
+    }
+
+    if(screen==="league"){
+
+        let rows = "";
+
+        getTable().forEach((t,i)=>{
+
+            rows += `
+            <tr class="player-row">
+                <td>${i+1}</td>
+                <td>${t.name}</td>
+                <td>${t.points}</td>
+                <td>${t.gf}</td>
+                <td>${t.ga}</td>
+            </tr>
+            `;
+        });
+
+        main.innerHTML = `
+        <div class="card">
+            <h2>League Table</h2>
+
+            <table>
+                <tr>
+                    <th>Pos</th>
+                    <th>Club</th>
+                    <th>Pts</th>
+                    <th>GF</th>
+                    <th>GA</th>
+                </tr>
+
+                ${rows}
+            </table>
+        </div>
+        `;
+    }
+
+    if(screen==="calendar"){
+
+        let html = "";
+
+        for(let i=currentMatchday;i<=38;i++){
+            html += `
+            <div class="card">
+                Matchday ${i}
+            </div>
+            `;
+        }
+
+        main.innerHTML = html;
+    }
+
+}
+
+function setFormation(f){
+    formation = f;
+    showScreen("squad");
+}
+
+function buyPlayer(index){
+
+    const p = transferPool[index];
+
+    if(money >= p.value){
+
+        money -= p.value;
+
+        userTeam.players.push(p);
+
+        transferPool.splice(index,1);
+
+        alert("Signed " + p.name);
+
+        showScreen("transfers");
+
+    } else {
+        alert("Not enough money");
+    }
+}
+
+function getTable(){
+
+    return [...leagueTeams].sort((a,b)=>{
+
+        if(b.points !== a.points){
+            return b.points - a.points;
+        }
+
+        return (b.gf-b.ga) - (a.gf-a.ga);
+    });
+}
+
+function simNext(){
+
+    if(currentMatchday > 38){
+        alert("Season finished");
+        return;
+    }
+
+    for(let i=0;i<leagueTeams.length;i+=2){
+
+        const home = leagueTeams[i];
+        const away = leagueTeams[i+1];
+
+        const homeStrength = avgRating(home) + Math.random()*10;
+        const awayStrength = avgRating(away) + Math.random()*10;
+
+        const homeGoals = Math.floor(homeStrength/20 * Math.random()*2);
+        const awayGoals = Math.floor(awayStrength/20 * Math.random()*2);
+
+        home.gf += homeGoals;
+        home.ga += awayGoals;
+
+        away.gf += awayGoals;
+        away.ga += homeGoals;
+
+        if(homeGoals > awayGoals){
+            home.points += 3;
+        } else if(awayGoals > homeGoals){
+            away.points += 3;
+        } else {
+            home.points += 1;
+            away.points += 1;
+        }
+    }
+
+    currentMatchday++;
+
+    if(currentMatchday > 38){
+
+        const winner = getTable()[0];
+
+        if(winner.name === userTeam.name){
+            alert("🏆 YOU WON THE LEAGUE!");
+        } else {
+            alert("Season Over. Winner: " + winner.name);
+        }
+    }
+
+    showScreen("dashboard");
+}
+
+function simSeason(){
+
+    while(currentMatchday <= 38){
+        simNext();
+    }
+}
+
+showScreen("dashboard");
+
+</script>
+
+</body>
+</html>
