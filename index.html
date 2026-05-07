@@ -1,6 +1,6 @@
-<!-- 
+<!--
 GLENN'S FOOTBALL MANAGER
-Single-file HTML/CSS/JS game
+UPDATED VERSION
 -->
 
 <!DOCTYPE html>
@@ -16,11 +16,11 @@ Single-file HTML/CSS/JS game
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:Inter, Arial, sans-serif;
 }
 
 body{
-    background:#0f1115;
+    background:#0d1015;
     color:white;
     overflow:hidden;
 }
@@ -33,42 +33,48 @@ body{
 /* SIDEBAR */
 
 .sidebar{
-    width:240px;
-    background:#171a21;
-    border-right:1px solid #2a2f3a;
-    padding:20px;
+    width:250px;
+    background:#151922;
+    border-right:1px solid #2a3140;
+    padding:22px;
 }
 
 .logo{
-    font-size:24px;
-    font-weight:700;
+    font-size:28px;
+    font-weight:800;
+    line-height:1.1;
+    margin-bottom:8px;
+}
+
+.logo-sub{
+    opacity:.65;
+    font-size:13px;
     margin-bottom:25px;
-    line-height:1.2;
 }
 
 .side-btn{
     width:100%;
-    border:none;
-    background:#202531;
-    color:white;
     padding:13px;
     margin-bottom:10px;
-    border-radius:10px;
+    border:none;
+    border-radius:12px;
+    background:#202734;
+    color:white;
     cursor:pointer;
     font-size:15px;
     transition:.2s;
 }
 
 .side-btn:hover{
-    background:#2d3442;
+    background:#2e384a;
 }
 
-.side-btn.green{
-    background:#1f6d3f;
+.green{
+    background:#1f7744;
 }
 
-.side-btn.green:hover{
-    background:#27864f;
+.green:hover{
+    background:#289455;
 }
 
 /* MAIN */
@@ -76,40 +82,40 @@ body{
 .main{
     flex:1;
     overflow-y:auto;
-    padding:24px;
+    padding:25px;
 }
 
 .topbar{
     display:flex;
     gap:15px;
-    margin-bottom:20px;
     flex-wrap:wrap;
+    margin-bottom:20px;
 }
 
 .stat{
-    background:#1b2029;
-    border:1px solid #2c3340;
-    padding:14px 18px;
-    border-radius:12px;
-    min-width:150px;
+    background:#171c26;
+    border:1px solid #2c3545;
+    padding:15px 20px;
+    border-radius:14px;
+    min-width:180px;
 }
 
 .stat-title{
     font-size:12px;
-    opacity:.7;
+    opacity:.6;
 }
 
 .stat-value{
-    font-size:20px;
+    font-size:22px;
     font-weight:700;
     margin-top:5px;
 }
 
 .card{
-    background:#171b23;
-    border:1px solid #2b3240;
-    border-radius:14px;
-    padding:20px;
+    background:#161b24;
+    border:1px solid #2a3140;
+    border-radius:16px;
+    padding:22px;
     margin-bottom:20px;
 }
 
@@ -118,9 +124,18 @@ body{
 }
 
 .sub{
-    opacity:.7;
+    opacity:.65;
     font-size:14px;
     margin-bottom:18px;
+}
+
+.instructions{
+    background:#202734;
+    border-left:4px solid #4da3ff;
+    padding:14px;
+    border-radius:10px;
+    margin-bottom:18px;
+    font-size:14px;
 }
 
 table{
@@ -131,55 +146,46 @@ table{
 th{
     text-align:left;
     padding:12px;
-    background:#1f2530;
+    background:#202734;
 }
 
 td{
     padding:12px;
-    border-bottom:1px solid #262d38;
+    border-bottom:1px solid #252d3a;
 }
 
 tr:hover{
-    background:#202632;
+    background:#1f2632;
 }
 
 button{
     border:none;
     background:#2c3442;
     color:white;
-    padding:8px 12px;
-    border-radius:8px;
+    padding:9px 13px;
+    border-radius:10px;
     cursor:pointer;
+    transition:.2s;
 }
 
 button:hover{
-    background:#3a4353;
+    background:#3a4557;
 }
 
-.green-btn{
-    background:#1f7a45;
+.red{
+    background:#943636;
 }
 
-.green-btn:hover{
-    background:#289c58;
+.red:hover{
+    background:#b84b4b;
 }
-
-.red-btn{
-    background:#8b2d2d;
-}
-
-.red-btn:hover{
-    background:#b03c3c;
-}
-
-/* PITCH */
 
 .pitch{
     width:100%;
     height:560px;
-    background:#146b2e;
+    background:#157132;
+    border-radius:16px;
     border:4px solid white;
-    border-radius:15px;
     position:relative;
     overflow:hidden;
     margin-top:20px;
@@ -189,7 +195,6 @@ button:hover{
     content:"";
     position:absolute;
     left:50%;
-    top:0;
     width:3px;
     height:100%;
     background:white;
@@ -198,85 +203,127 @@ button:hover{
 
 .player{
     position:absolute;
-    width:95px;
-    height:38px;
+    width:100px;
+    height:40px;
     background:white;
     color:black;
     border-radius:50px;
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
     font-size:12px;
-    font-weight:bold;
-    transform:translate(-50%, -50%);
+    font-weight:700;
+    transform:translate(-50%,-50%);
     cursor:grab;
 }
 
-.instructions{
-    background:#202734;
-    padding:12px;
-    border-radius:10px;
-    margin-bottom:20px;
+/* NOTIFICATION */
+
+.notification{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:#1e2531;
+    border:1px solid #394355;
+    padding:16px 20px;
+    border-radius:14px;
+    min-width:280px;
+    z-index:999;
+    opacity:0;
+    transform:translateY(-20px);
+    transition:.3s;
+    pointer-events:none;
+}
+
+.notification.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.notification-title{
+    font-weight:700;
+    margin-bottom:5px;
+}
+
+.notification-text{
+    opacity:.75;
     font-size:14px;
-    opacity:.85;
 }
 
 input{
     background:#202734;
-    border:1px solid #394253;
+    border:1px solid #384255;
     color:white;
     padding:10px;
-    border-radius:8px;
+    border-radius:10px;
+    width:260px;
+    margin-right:10px;
 }
 
 .win{
-    font-size:28px;
     color:gold;
-    font-weight:bold;
-    margin-top:20px;
+    font-size:28px;
+    font-weight:800;
+    margin-top:15px;
 }
 
 </style>
 </head>
-
 <body>
+
+<div class="notification" id="notification">
+    <div class="notification-title" id="notifyTitle"></div>
+    <div class="notification-text" id="notifyText"></div>
+</div>
 
 <div class="container">
 
-    <div class="sidebar">
+<div class="sidebar">
 
-        <div class="logo">
-            Glenn's<br>Football Manager
-        </div>
+<div class="logo">Glenn's<br>Football Manager</div>
+<div class="logo-sub">Simple Career Mode Experience</div>
 
-        <button class="side-btn" onclick="showScreen('dashboard')">Dashboard</button>
-        <button class="side-btn" onclick="showScreen('squad')">Squad</button>
-        <button class="side-btn" onclick="showScreen('transfers')">Transfers</button>
-        <button class="side-btn" onclick="showScreen('league')">League</button>
-        <button class="side-btn" onclick="showScreen('settings')">Club</button>
+<button class="side-btn" onclick="showScreen('dashboard')">Dashboard</button>
+<button class="side-btn" onclick="showScreen('squad')">Squad</button>
+<button class="side-btn" onclick="showScreen('transfers')">Transfers</button>
+<button class="side-btn" onclick="showScreen('league')">League</button>
+<button class="side-btn" onclick="showScreen('stats')">Stats</button>
+<button class="side-btn" onclick="showScreen('club')">Club</button>
 
-        <hr style="margin:20px 0;border-color:#2d3442">
+<hr style="margin:22px 0;border-color:#2d3645">
 
-        <button class="side-btn green" onclick="simNext()">Sim Match</button>
-        <button class="side-btn" onclick="simSeason()">Sim Season</button>
+<button class="side-btn green" onclick="simNext()">Sim Match</button>
+<button class="side-btn" onclick="simSeason()">Sim Season</button>
 
-        <hr style="margin:20px 0;border-color:#2d3442">
+<hr style="margin:22px 0;border-color:#2d3645">
 
-        <button class="side-btn" onclick="saveGame()">Save Game</button>
-        <button class="side-btn" onclick="loadGame()">Load Save</button>
+<button class="side-btn" onclick="saveGame()">Save Game</button>
+<button class="side-btn" onclick="loadGame()">Load Save</button>
+<button class="side-btn" onclick="newSeason()">New Season</button>
 
-    </div>
+</div>
 
-    <div class="main" id="main"></div>
+<div class="main" id="main"></div>
 
 </div>
 
 <script>
 
-/* ---------- DATA ---------- */
+/* ---------------- NAMES ---------------- */
 
-const firstNames = ["Leo","Luca","Noah","Mateo","Kai","Theo","Oscar","Ivan","Ruben","Max"];
-const lastNames = ["Silva","Costa","Walker","Young","Garcia","Cole","Turner","Hill","Rossi","Lopez"];
+const firstNames = [
+"Thiago","Luka","Enzo","Mason","Rafael","Joao","Nico","Kylian",
+"Jude","Aurelien","Xavi","Pedri","Victor","Santiago","Dante",
+"Emilio","Kaoru","Alejandro","Benjamin","Zaire","Yusuf","Leon"
+];
+
+const lastNames = [
+"Silva","Costa","Walker","Mbappe","Bellingham","Garcia","Nakamura",
+"Rossi","Fernandez","Muller","Adebayo","Santos","Kovacic",
+"Torres","Reyes","Alvarez","Romero","Diallo","Kim","Mendes"
+];
+
+/* ---------------- HELPERS ---------------- */
 
 function randomName(){
     return firstNames[Math.floor(Math.random()*firstNames.length)]
@@ -290,15 +337,17 @@ function playerValue(ovr){
 
 function createPlayer(){
 
-    let ovr = Math.floor(Math.random()*25)+65;
+    const ovr = Math.floor(Math.random()*25)+65;
 
-    return {
+    return{
         id:crypto.randomUUID(),
         name:randomName(),
-        ovr:ovr,
+        ovr,
         value:playerValue(ovr)
     };
 }
+
+/* ---------------- DATA ---------------- */
 
 const formations = {
 
@@ -319,14 +368,32 @@ const formations = {
 };
 
 let leagueTeams = [];
+let transferMarket = [];
+
+let seasonNumber = 1;
+
+let history = {
+    seasonsPlayed:0,
+    leagueTitles:0,
+    totalWins:0,
+    totalDraws:0,
+    totalLosses:0
+};
+
+function buildLeague(){
+
+leagueTeams = [];
 
 for(let i=0;i<20;i++){
 
     let team = {
-        name:i===0 ? "Your Club" : "FC " + (i+1),
+        name:i===0 ? userTeam?.name || "Your Club" : "FC " + (i+1),
         points:0,
         gf:0,
         ga:0,
+        wins:0,
+        draws:0,
+        losses:0,
         players:[]
     };
 
@@ -337,7 +404,15 @@ for(let i=0;i<20;i++){
     leagueTeams.push(team);
 }
 
+}
+
+buildLeague();
+
 let userTeam = leagueTeams[0];
+
+for(let i=0;i<40;i++){
+    transferMarket.push(createPlayer());
+}
 
 let money = 80000000;
 let matchday = 1;
@@ -347,82 +422,101 @@ let startingXI = [...userTeam.players]
 .sort((a,b)=>b.ovr-a.ovr)
 .slice(0,11);
 
-const transferMarket = [];
+/* ---------------- UI ---------------- */
 
-for(let i=0;i<40;i++){
-    transferMarket.push(createPlayer());
+function notify(title,text){
+
+const box = document.getElementById("notification");
+
+document.getElementById("notifyTitle").innerText = title;
+document.getElementById("notifyText").innerText = text;
+
+box.classList.add("show");
+
+setTimeout(()=>{
+    box.classList.remove("show");
+},3000);
+
 }
 
-/* ---------- HELPERS ---------- */
-
 function avgRating(team){
-    return Math.round(
-        team.players.reduce((a,b)=>a+b.ovr,0)
-        / team.players.length
-    );
+
+return Math.round(
+team.players.reduce((a,b)=>a+b.ovr,0)/team.players.length
+);
+
 }
 
 function getTable(){
 
-    return [...leagueTeams].sort((a,b)=>{
+return [...leagueTeams].sort((a,b)=>{
 
-        if(b.points !== a.points){
-            return b.points - a.points;
-        }
+if(b.points !== a.points){
+return b.points-a.points;
+}
 
-        return (b.gf-b.ga) - (a.gf-a.ga);
+return (b.gf-b.ga) - (a.gf-a.ga);
 
-    });
+});
+
 }
 
 function autoBestXI(){
 
-    startingXI = [...userTeam.players]
-    .sort((a,b)=>b.ovr-a.ovr)
-    .slice(0,11);
+startingXI = [...userTeam.players]
+.sort((a,b)=>b.ovr-a.ovr)
+.slice(0,11);
 
-    showScreen("squad");
+showScreen("squad");
+
 }
 
-/* ---------- SAVE ---------- */
+/* ---------------- SAVE ---------------- */
 
 function saveGame(){
 
-    localStorage.setItem("gfm-save", JSON.stringify({
-        leagueTeams,
-        money,
-        matchday,
-        formation,
-        startingXI,
-        transferMarket
-    }));
+localStorage.setItem("gfm-save", JSON.stringify({
+leagueTeams,
+transferMarket,
+money,
+matchday,
+formation,
+startingXI,
+seasonNumber,
+history
+}));
 
-    alert("Game Saved");
+notify("Game Saved","Your career mode progress was saved.");
+
 }
 
 function loadGame(){
 
-    const save = JSON.parse(localStorage.getItem("gfm-save"));
+const save = JSON.parse(localStorage.getItem("gfm-save"));
 
-    if(!save){
-        alert("No save found");
-        return;
-    }
-
-    leagueTeams = save.leagueTeams;
-    money = save.money;
-    matchday = save.matchday;
-    formation = save.formation;
-    startingXI = save.startingXI;
-
-    userTeam = leagueTeams[0];
-
-    alert("Save Loaded");
-
-    showScreen("dashboard");
+if(!save){
+notify("No Save Found","Start a new career first.");
+return;
 }
 
-/* ---------- SCREENS ---------- */
+leagueTeams = save.leagueTeams;
+transferMarket = save.transferMarket;
+money = save.money;
+matchday = save.matchday;
+formation = save.formation;
+startingXI = save.startingXI;
+seasonNumber = save.seasonNumber;
+history = save.history;
+
+userTeam = leagueTeams[0];
+
+notify("Save Loaded","Welcome back manager.");
+
+showScreen("dashboard");
+
+}
+
+/* ---------------- SCREENS ---------------- */
 
 function showScreen(screen){
 
@@ -447,8 +541,8 @@ main.innerHTML = `
 </div>
 
 <div class="stat">
-<div class="stat-title">Matchday</div>
-<div class="stat-value">${matchday}/38</div>
+<div class="stat-title">Season</div>
+<div class="stat-value">${seasonNumber}</div>
 </div>
 
 <div class="stat">
@@ -462,10 +556,10 @@ ${getTable().findIndex(t=>t.name===userTeam.name)+1}
 
 <div class="card">
 
-<h2>Season Goal</h2>
+<h2>Manager Overview</h2>
 
-<div class="sub">
-Win the league to beat the game.
+<div class="instructions">
+Sign players, build your best XI, and win the league title to dominate the save.
 </div>
 
 <p>
@@ -473,9 +567,9 @@ Your squad overall is <b>${avgRating(userTeam)}</b>.
 </p>
 
 ${
-getTable()[0].name===userTeam.name && matchday > 8
+getTable()[0].name===userTeam.name && matchday > 10
 ?
-`<div class="win">🏆 You're top of the league.</div>`
+`<div class="win">🏆 You're leading the title race.</div>`
 :
 ""
 }
@@ -483,19 +577,20 @@ getTable()[0].name===userTeam.name && matchday > 8
 </div>
 
 `;
+
 }
 
 /* SQUAD */
 
 if(screen==="squad"){
 
-let squadRows = "";
+let rows = "";
 
 userTeam.players.forEach(p=>{
 
 const inXI = startingXI.find(x=>x.id===p.id);
 
-squadRows += `
+rows += `
 
 <tr draggable="true"
 ondragstart="dragPlayer('${p.id}')">
@@ -503,26 +598,24 @@ ondragstart="dragPlayer('${p.id}')">
 <td>${p.name}</td>
 <td>${p.ovr}</td>
 <td>$${p.value.toLocaleString()}</td>
+<td>${inXI ? "Starting XI" : "Bench"}</td>
 
 <td>
-${inXI ? "Starting XI" : ""}
-</td>
-
-<td>
-<button class="red-btn"
+<button class="red"
 onclick="sellPlayer('${p.id}')">
 Sell
 </button>
 </td>
 
 </tr>
+
 `;
 
 });
 
-const pos = formations[formation];
-
 let pitchHTML = "";
+
+const pos = formations[formation];
 
 for(let i=0;i<11;i++){
 
@@ -549,10 +642,10 @@ main.innerHTML = `
 
 <div class="card">
 
-<h2>Squad Management</h2>
+<h2>Starting XI</h2>
 
 <div class="instructions">
-Drag players from the squad table onto the pitch to replace players in your starting XI.
+Drag players from the table onto the pitch to replace players in your lineup.
 </div>
 
 <div style="display:flex;gap:10px;flex-wrap:wrap">
@@ -565,23 +658,21 @@ Drag players from the squad table onto the pitch to replace players in your star
 4-4-2
 </button>
 
-<button class="green-btn" onclick="autoBestXI()">
+<button class="green" onclick="autoBestXI()">
 Highest OVR XI
 </button>
 
 </div>
 
 <div class="pitch">
-
 ${pitchHTML}
-
 </div>
 
 </div>
 
 <div class="card">
 
-<h2>Full Squad</h2>
+<h2>Squad List</h2>
 
 <table>
 
@@ -593,13 +684,14 @@ ${pitchHTML}
 <th></th>
 </tr>
 
-${squadRows}
+${rows}
 
 </table>
 
 </div>
 
 `;
+
 }
 
 /* TRANSFERS */
@@ -619,7 +711,7 @@ rows += `
 <td>$${p.value.toLocaleString()}</td>
 
 <td>
-<button class="green-btn"
+<button class="green"
 onclick="buyPlayer(${index})">
 Buy
 </button>
@@ -637,8 +729,8 @@ main.innerHTML = `
 
 <h2>Transfer Market</h2>
 
-<div class="sub">
-Higher overall players cost more.
+<div class="instructions">
+Higher rated players cost more money but improve your title chances.
 </div>
 
 <table>
@@ -657,6 +749,7 @@ ${rows}
 </div>
 
 `;
+
 }
 
 /* LEAGUE */
@@ -706,11 +799,12 @@ ${rows}
 </div>
 
 `;
+
 }
 
-/* SETTINGS */
+/* CLUB */
 
-if(screen==="settings"){
+if(screen==="club"){
 
 main.innerHTML = `
 
@@ -722,11 +816,9 @@ main.innerHTML = `
 Rename your club below.
 </div>
 
-<input id="clubName"
-value="${userTeam.name}">
+<input id="clubName" value="${userTeam.name}">
 
-<button class="green-btn"
-onclick="renameClub()">
+<button class="green" onclick="renameClub()">
 Save Name
 </button>
 
@@ -736,9 +828,57 @@ Save Name
 
 }
 
+/* STATS */
+
+if(screen==="stats"){
+
+main.innerHTML = `
+
+<div class="topbar">
+
+<div class="stat">
+<div class="stat-title">Seasons Played</div>
+<div class="stat-value">${history.seasonsPlayed}</div>
+</div>
+
+<div class="stat">
+<div class="stat-title">League Titles</div>
+<div class="stat-value">${history.leagueTitles}</div>
+</div>
+
+<div class="stat">
+<div class="stat-title">Wins</div>
+<div class="stat-value">${history.totalWins}</div>
+</div>
+
+<div class="stat">
+<div class="stat-title">Losses</div>
+<div class="stat-value">${history.totalLosses}</div>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Manager Legacy</h2>
+
+<div class="instructions">
+This page tracks your overall performance across every season.
+</div>
+
+<p><b>Draws:</b> ${history.totalDraws}</p>
+<p><b>Current Club:</b> ${userTeam.name}</p>
+<p><b>Current Season:</b> ${seasonNumber}</p>
+
+</div>
+
+`;
+
 }
 
-/* ---------- CLUB ---------- */
+}
+
+/* ---------------- CLUB ---------------- */
 
 function renameClub(){
 
@@ -748,18 +888,24 @@ if(val.length < 2) return;
 
 userTeam.name = val;
 
-showScreen("settings");
+notify("Club Updated","Your club is now called " + val);
+
+showScreen("club");
+
 }
 
-/* ---------- TRANSFERS ---------- */
+/* ---------------- TRANSFERS ---------------- */
 
 function buyPlayer(index){
 
 const p = transferMarket[index];
 
 if(money < p.value){
-    alert("Not enough money");
-    return;
+
+notify("Transfer Failed","You don't have enough money.");
+
+return;
+
 }
 
 money -= p.value;
@@ -768,32 +914,38 @@ userTeam.players.push(p);
 
 transferMarket.splice(index,1);
 
+notify("Player Signed",p.name + " joined your club.");
+
 showScreen("transfers");
+
 }
 
 function sellPlayer(id){
 
-const player = userTeam.players.find(p=>p.id===id);
+const p = userTeam.players.find(x=>x.id===id);
 
-money += player.value;
+money += p.value;
 
-userTeam.players = userTeam.players.filter(p=>p.id!==id);
+userTeam.players = userTeam.players.filter(x=>x.id!==id);
 
-startingXI = startingXI.filter(p=>p.id!==id);
+startingXI = startingXI.filter(x=>x.id!==id);
+
+notify("Player Sold",p.name + " was sold.");
 
 showScreen("squad");
+
 }
 
-/* ---------- DRAG ---------- */
+/* ---------------- DRAG ---------------- */
 
 let draggedPlayer = null;
 
 function dragPlayer(id){
-    draggedPlayer = id;
+draggedPlayer = id;
 }
 
 function allowDrop(e){
-    e.preventDefault();
+e.preventDefault();
 }
 
 function dropPlayer(e,index){
@@ -805,13 +957,14 @@ const player = userTeam.players.find(p=>p.id===draggedPlayer);
 startingXI[index] = player;
 
 showScreen("squad");
+
 }
 
-/* ---------- MATCHES ---------- */
+/* ---------------- MATCHES ---------------- */
 
 function teamStrength(team){
 
-if(team === userTeam){
+if(team===userTeam){
 
 return startingXI.reduce((a,b)=>a+b.ovr,0)/11;
 
@@ -825,7 +978,7 @@ function simNext(){
 
 if(matchday > 38){
 
-alert("Season finished");
+notify("Season Finished","Start a new season.");
 
 return;
 
@@ -848,17 +1001,47 @@ home.ga += ag;
 away.gf += ag;
 away.ga += hg;
 
+if(home===userTeam || away===userTeam){
+
+if(hg > ag){
+
+if(home===userTeam) history.totalWins++;
+else history.totalLosses++;
+
+}
+
+else if(ag > hg){
+
+if(away===userTeam) history.totalWins++;
+else history.totalLosses++;
+
+}
+
+else{
+
+history.totalDraws++;
+
+}
+
+}
+
 if(hg > ag){
 home.points += 3;
+home.wins++;
+away.losses++;
 }
 
 else if(ag > hg){
 away.points += 3;
+away.wins++;
+home.losses++;
 }
 
 else{
-home.points += 1;
-away.points += 1;
+home.points++;
+away.points++;
+home.draws++;
+away.draws++;
 }
 
 }
@@ -869,13 +1052,23 @@ if(matchday > 38){
 
 const winner = getTable()[0];
 
-if(winner.name === userTeam.name){
+history.seasonsPlayed++;
 
-alert("🏆 YOU WON THE LEAGUE!");
+if(winner.name===userTeam.name){
+
+history.leagueTitles++;
+
+notify(
+"🏆 League Champions",
+"You won the league title!"
+);
 
 }else{
 
-alert("Season Over. " + winner.name + " won the league.");
+notify(
+"Season Finished",
+winner.name + " won the league."
+);
 
 }
 
@@ -893,7 +1086,44 @@ simNext();
 
 }
 
-/* ---------- START ---------- */
+/* ---------------- NEW SEASON ---------------- */
+
+function newSeason(){
+
+const currentName = userTeam.name;
+
+seasonNumber++;
+
+buildLeague();
+
+userTeam = leagueTeams[0];
+
+userTeam.name = currentName;
+
+matchday = 1;
+
+money = 80000000;
+
+startingXI = [...userTeam.players]
+.sort((a,b)=>b.ovr-a.ovr)
+.slice(0,11);
+
+transferMarket = [];
+
+for(let i=0;i<40;i++){
+transferMarket.push(createPlayer());
+}
+
+notify(
+"New Season Started",
+"Season " + seasonNumber + " is underway."
+);
+
+showScreen("dashboard");
+
+}
+
+/* ---------------- START ---------------- */
 
 showScreen("dashboard");
 
