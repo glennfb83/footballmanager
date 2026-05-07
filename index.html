@@ -1,11 +1,17 @@
+<!-- 
+GLENN'S FOOTBALL MANAGER
+Single-file HTML/CSS/JS game
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Simple Football Manager</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glenn's Football Manager</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -14,8 +20,9 @@
 }
 
 body{
-    background:#111;
+    background:#0f1115;
     color:white;
+    overflow:hidden;
 }
 
 .container{
@@ -23,51 +30,97 @@ body{
     height:100vh;
 }
 
+/* SIDEBAR */
+
 .sidebar{
-    width:220px;
-    background:#181818;
-    border-right:2px solid #2a2a2a;
+    width:240px;
+    background:#171a21;
+    border-right:1px solid #2a2f3a;
     padding:20px;
 }
 
-.sidebar h1{
+.logo{
     font-size:24px;
-    margin-bottom:20px;
+    font-weight:700;
+    margin-bottom:25px;
+    line-height:1.2;
 }
 
-.sidebar button{
+.side-btn{
     width:100%;
-    margin-bottom:10px;
-    padding:12px;
     border:none;
-    background:#242424;
+    background:#202531;
     color:white;
+    padding:13px;
+    margin-bottom:10px;
+    border-radius:10px;
     cursor:pointer;
-    border-radius:8px;
     font-size:15px;
     transition:.2s;
 }
 
-.sidebar button:hover{
-    background:#3a3a3a;
+.side-btn:hover{
+    background:#2d3442;
 }
+
+.side-btn.green{
+    background:#1f6d3f;
+}
+
+.side-btn.green:hover{
+    background:#27864f;
+}
+
+/* MAIN */
 
 .main{
     flex:1;
-    padding:20px;
     overflow-y:auto;
+    padding:24px;
+}
+
+.topbar{
+    display:flex;
+    gap:15px;
+    margin-bottom:20px;
+    flex-wrap:wrap;
+}
+
+.stat{
+    background:#1b2029;
+    border:1px solid #2c3340;
+    padding:14px 18px;
+    border-radius:12px;
+    min-width:150px;
+}
+
+.stat-title{
+    font-size:12px;
+    opacity:.7;
+}
+
+.stat-value{
+    font-size:20px;
+    font-weight:700;
+    margin-top:5px;
 }
 
 .card{
-    background:#1b1b1b;
-    border:1px solid #2d2d2d;
-    border-radius:10px;
-    padding:15px;
+    background:#171b23;
+    border:1px solid #2b3240;
+    border-radius:14px;
+    padding:20px;
     margin-bottom:20px;
 }
 
-h2{
-    margin-bottom:15px;
+.card h2{
+    margin-bottom:10px;
+}
+
+.sub{
+    opacity:.7;
+    font-size:14px;
+    margin-bottom:18px;
 }
 
 table{
@@ -75,64 +128,114 @@ table{
     border-collapse:collapse;
 }
 
-th, td{
-    padding:10px;
-    border-bottom:1px solid #2d2d2d;
+th{
     text-align:left;
+    padding:12px;
+    background:#1f2530;
 }
 
-.player-row:hover{
-    background:#252525;
+td{
+    padding:12px;
+    border-bottom:1px solid #262d38;
 }
 
-.green{
-    color:#4cff72;
+tr:hover{
+    background:#202632;
 }
 
-.red{
-    color:#ff5c5c;
+button{
+    border:none;
+    background:#2c3442;
+    color:white;
+    padding:8px 12px;
+    border-radius:8px;
+    cursor:pointer;
 }
+
+button:hover{
+    background:#3a4353;
+}
+
+.green-btn{
+    background:#1f7a45;
+}
+
+.green-btn:hover{
+    background:#289c58;
+}
+
+.red-btn{
+    background:#8b2d2d;
+}
+
+.red-btn:hover{
+    background:#b03c3c;
+}
+
+/* PITCH */
 
 .pitch{
     width:100%;
-    height:500px;
-    background:#0d5e1d;
-    border-radius:10px;
-    position:relative;
+    height:560px;
+    background:#146b2e;
     border:4px solid white;
+    border-radius:15px;
+    position:relative;
+    overflow:hidden;
     margin-top:20px;
 }
 
-.player-dot{
+.pitch::before{
+    content:"";
     position:absolute;
-    transform:translate(-50%, -50%);
+    left:50%;
+    top:0;
+    width:3px;
+    height:100%;
+    background:white;
+    transform:translateX(-50%);
+}
+
+.player{
+    position:absolute;
+    width:95px;
+    height:38px;
     background:white;
     color:black;
-    padding:6px 8px;
-    border-radius:20px;
+    border-radius:50px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     font-size:12px;
     font-weight:bold;
+    transform:translate(-50%, -50%);
+    cursor:grab;
 }
 
-.topbar{
-    display:flex;
-    justify-content:space-between;
+.instructions{
+    background:#202734;
+    padding:12px;
+    border-radius:10px;
     margin-bottom:20px;
-    flex-wrap:wrap;
-    gap:10px;
+    font-size:14px;
+    opacity:.85;
 }
 
-.badge{
-    background:#242424;
-    padding:10px 15px;
+input{
+    background:#202734;
+    border:1px solid #394253;
+    color:white;
+    padding:10px;
     border-radius:8px;
 }
 
 .win{
+    font-size:28px;
     color:gold;
-    font-size:26px;
+    font-weight:bold;
     margin-top:20px;
 }
+
 </style>
 </head>
 
@@ -140,71 +243,87 @@ th, td{
 
 <div class="container">
 
-<div class="sidebar">
-    <h1>FC 26 Lite</h1>
+    <div class="sidebar">
 
-    <button onclick="showScreen('dashboard')">Dashboard</button>
-    <button onclick="showScreen('squad')">Squad</button>
-    <button onclick="showScreen('transfers')">Transfers</button>
-    <button onclick="showScreen('league')">League</button>
-    <button onclick="showScreen('calendar')">Calendar</button>
+        <div class="logo">
+            Glenn's<br>Football Manager
+        </div>
 
-    <hr style="margin:20px 0;border-color:#333">
+        <button class="side-btn" onclick="showScreen('dashboard')">Dashboard</button>
+        <button class="side-btn" onclick="showScreen('squad')">Squad</button>
+        <button class="side-btn" onclick="showScreen('transfers')">Transfers</button>
+        <button class="side-btn" onclick="showScreen('league')">League</button>
+        <button class="side-btn" onclick="showScreen('settings')">Club</button>
 
-    <button onclick="simNext()">Sim Next Match</button>
-    <button onclick="simSeason()">Sim Full Season</button>
-</div>
+        <hr style="margin:20px 0;border-color:#2d3442">
 
-<div class="main" id="main"></div>
+        <button class="side-btn green" onclick="simNext()">Sim Match</button>
+        <button class="side-btn" onclick="simSeason()">Sim Season</button>
+
+        <hr style="margin:20px 0;border-color:#2d3442">
+
+        <button class="side-btn" onclick="saveGame()">Save Game</button>
+        <button class="side-btn" onclick="loadGame()">Load Save</button>
+
+    </div>
+
+    <div class="main" id="main"></div>
 
 </div>
 
 <script>
 
-const firstNames = [
-"Leo","Luca","Noah","Ethan","Mateo","Kai","Mason","Theo",
-"Julian","Max","Oscar","Ruben","Ivan","Adrian","Dani"
-];
+/* ---------- DATA ---------- */
 
-const lastNames = [
-"Silva","Costa","Walker","Miller","Santos","Young","Reed",
-"Lopez","Garcia","Rossi","Cole","Hill","Turner","Foster"
-];
-
-const formations = {
-    "4-3-3":[
-        [50,90],
-        [20,70],[40,70],[60,70],[80,70],
-        [30,50],[50,45],[70,50],
-        [20,25],[50,18],[80,25]
-    ],
-
-    "4-4-2":[
-        [50,90],
-        [20,70],[40,70],[60,70],[80,70],
-        [20,50],[40,50],[60,50],[80,50],
-        [40,20],[60,20]
-    ]
-};
+const firstNames = ["Leo","Luca","Noah","Mateo","Kai","Theo","Oscar","Ivan","Ruben","Max"];
+const lastNames = ["Silva","Costa","Walker","Young","Garcia","Cole","Turner","Hill","Rossi","Lopez"];
 
 function randomName(){
-    return firstNames[Math.floor(Math.random()*firstNames.length)] + " " +
+    return firstNames[Math.floor(Math.random()*firstNames.length)]
+    + " " +
     lastNames[Math.floor(Math.random()*lastNames.length)];
 }
 
-function createPlayer(){
-    return {
-        name:randomName(),
-        rating:Math.floor(Math.random()*35)+60
-    }
+function playerValue(ovr){
+    return ovr * 1000000;
 }
 
-const leagueTeams = [];
+function createPlayer(){
+
+    let ovr = Math.floor(Math.random()*25)+65;
+
+    return {
+        id:crypto.randomUUID(),
+        name:randomName(),
+        ovr:ovr,
+        value:playerValue(ovr)
+    };
+}
+
+const formations = {
+
+"4-3-3":[
+[50,92],
+[15,72],[38,72],[62,72],[85,72],
+[28,48],[50,42],[72,48],
+[20,20],[50,14],[80,20]
+],
+
+"4-4-2":[
+[50,92],
+[15,72],[38,72],[62,72],[85,72],
+[15,48],[38,48],[62,48],[85,48],
+[38,18],[62,18]
+]
+
+};
+
+let leagueTeams = [];
 
 for(let i=0;i<20;i++){
 
-    const team = {
-        name:i===0 ? "Your FC" : "FC " + (i+1),
+    let team = {
+        name:i===0 ? "Your Club" : "FC " + (i+1),
         points:0,
         gf:0,
         ga:0,
@@ -218,227 +337,29 @@ for(let i=0;i<20;i++){
     leagueTeams.push(team);
 }
 
-const userTeam = leagueTeams[0];
+let userTeam = leagueTeams[0];
 
+let money = 80000000;
+let matchday = 1;
 let formation = "4-3-3";
-let currentMatchday = 1;
-let money = 50000000;
 
-const transferPool = [];
+let startingXI = [...userTeam.players]
+.sort((a,b)=>b.ovr-a.ovr)
+.slice(0,11);
 
-for(let i=0;i<30;i++){
-    transferPool.push({
-        ...createPlayer(),
-        value:(Math.floor(Math.random()*20)+5)*1000000
-    });
+const transferMarket = [];
+
+for(let i=0;i<40;i++){
+    transferMarket.push(createPlayer());
 }
+
+/* ---------- HELPERS ---------- */
 
 function avgRating(team){
-    return team.players.reduce((a,b)=>a+b.rating,0)/team.players.length;
-}
-
-function showScreen(screen){
-
-    const main = document.getElementById("main");
-
-    if(screen==="dashboard"){
-
-        main.innerHTML = `
-        <div class="topbar">
-            <div class="badge">Matchday: ${currentMatchday}/38</div>
-            <div class="badge">Money: $${money.toLocaleString()}</div>
-            <div class="badge">Formation: ${formation}</div>
-        </div>
-
-        <div class="card">
-            <h2>Your Club</h2>
-            <p>Club: <b>${userTeam.name}</b></p>
-            <p>Squad Rating: <b>${avgRating(userTeam).toFixed(1)}</b></p>
-            <p>League Position: <b>${getTable().findIndex(t=>t.name===userTeam.name)+1}</b></p>
-        </div>
-
-        ${
-            getTable()[0].name === userTeam.name && currentMatchday > 10
-            ? `<div class="win">🏆 You are leading the league!</div>`
-            : ""
-        }
-        `;
-
-    }
-
-    if(screen==="squad"){
-
-        let rows = "";
-
-        userTeam.players.forEach((p,i)=>{
-            rows += `
-            <tr class="player-row">
-                <td>${i+1}</td>
-                <td>${p.name}</td>
-                <td>${p.rating}</td>
-            </tr>
-            `;
-        });
-
-        const positions = formations[formation];
-
-        let pitchPlayers = "";
-
-        for(let i=0;i<11;i++){
-
-            const p = userTeam.players[i];
-
-            pitchPlayers += `
-            <div class="player-dot"
-            style="left:${positions[i][0]}%; top:${positions[i][1]}%">
-            ${p.name.split(" ")[0]}
-            </div>
-            `;
-        }
-
-        main.innerHTML = `
-        <div class="card">
-            <h2>Formation</h2>
-
-            <button onclick="setFormation('4-3-3')">4-3-3</button>
-            <button onclick="setFormation('4-4-2')">4-4-2</button>
-
-            <div class="pitch">
-                ${pitchPlayers}
-            </div>
-        </div>
-
-        <div class="card">
-            <h2>Squad</h2>
-
-            <table>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Rating</th>
-                </tr>
-
-                ${rows}
-            </table>
-        </div>
-        `;
-    }
-
-    if(screen==="transfers"){
-
-        let rows = "";
-
-        transferPool.forEach((p,i)=>{
-
-            rows += `
-            <tr class="player-row">
-                <td>${p.name}</td>
-                <td>${p.rating}</td>
-                <td>$${p.value.toLocaleString()}</td>
-                <td>
-                    <button onclick="buyPlayer(${i})">
-                    Buy
-                    </button>
-                </td>
-            </tr>
-            `;
-        });
-
-        main.innerHTML = `
-        <div class="card">
-            <h2>Transfer Market</h2>
-
-            <table>
-                <tr>
-                    <th>Name</th>
-                    <th>Rating</th>
-                    <th>Value</th>
-                    <th></th>
-                </tr>
-
-                ${rows}
-            </table>
-        </div>
-        `;
-    }
-
-    if(screen==="league"){
-
-        let rows = "";
-
-        getTable().forEach((t,i)=>{
-
-            rows += `
-            <tr class="player-row">
-                <td>${i+1}</td>
-                <td>${t.name}</td>
-                <td>${t.points}</td>
-                <td>${t.gf}</td>
-                <td>${t.ga}</td>
-            </tr>
-            `;
-        });
-
-        main.innerHTML = `
-        <div class="card">
-            <h2>League Table</h2>
-
-            <table>
-                <tr>
-                    <th>Pos</th>
-                    <th>Club</th>
-                    <th>Pts</th>
-                    <th>GF</th>
-                    <th>GA</th>
-                </tr>
-
-                ${rows}
-            </table>
-        </div>
-        `;
-    }
-
-    if(screen==="calendar"){
-
-        let html = "";
-
-        for(let i=currentMatchday;i<=38;i++){
-            html += `
-            <div class="card">
-                Matchday ${i}
-            </div>
-            `;
-        }
-
-        main.innerHTML = html;
-    }
-
-}
-
-function setFormation(f){
-    formation = f;
-    showScreen("squad");
-}
-
-function buyPlayer(index){
-
-    const p = transferPool[index];
-
-    if(money >= p.value){
-
-        money -= p.value;
-
-        userTeam.players.push(p);
-
-        transferPool.splice(index,1);
-
-        alert("Signed " + p.name);
-
-        showScreen("transfers");
-
-    } else {
-        alert("Not enough money");
-    }
+    return Math.round(
+        team.players.reduce((a,b)=>a+b.ovr,0)
+        / team.players.length
+    );
 }
 
 function getTable(){
@@ -450,65 +371,529 @@ function getTable(){
         }
 
         return (b.gf-b.ga) - (a.gf-a.ga);
+
     });
 }
 
-function simNext(){
+function autoBestXI(){
 
-    if(currentMatchday > 38){
-        alert("Season finished");
+    startingXI = [...userTeam.players]
+    .sort((a,b)=>b.ovr-a.ovr)
+    .slice(0,11);
+
+    showScreen("squad");
+}
+
+/* ---------- SAVE ---------- */
+
+function saveGame(){
+
+    localStorage.setItem("gfm-save", JSON.stringify({
+        leagueTeams,
+        money,
+        matchday,
+        formation,
+        startingXI,
+        transferMarket
+    }));
+
+    alert("Game Saved");
+}
+
+function loadGame(){
+
+    const save = JSON.parse(localStorage.getItem("gfm-save"));
+
+    if(!save){
+        alert("No save found");
         return;
     }
 
-    for(let i=0;i<leagueTeams.length;i+=2){
+    leagueTeams = save.leagueTeams;
+    money = save.money;
+    matchday = save.matchday;
+    formation = save.formation;
+    startingXI = save.startingXI;
 
-        const home = leagueTeams[i];
-        const away = leagueTeams[i+1];
+    userTeam = leagueTeams[0];
 
-        const homeStrength = avgRating(home) + Math.random()*10;
-        const awayStrength = avgRating(away) + Math.random()*10;
-
-        const homeGoals = Math.floor(homeStrength/20 * Math.random()*2);
-        const awayGoals = Math.floor(awayStrength/20 * Math.random()*2);
-
-        home.gf += homeGoals;
-        home.ga += awayGoals;
-
-        away.gf += awayGoals;
-        away.ga += homeGoals;
-
-        if(homeGoals > awayGoals){
-            home.points += 3;
-        } else if(awayGoals > homeGoals){
-            away.points += 3;
-        } else {
-            home.points += 1;
-            away.points += 1;
-        }
-    }
-
-    currentMatchday++;
-
-    if(currentMatchday > 38){
-
-        const winner = getTable()[0];
-
-        if(winner.name === userTeam.name){
-            alert("🏆 YOU WON THE LEAGUE!");
-        } else {
-            alert("Season Over. Winner: " + winner.name);
-        }
-    }
+    alert("Save Loaded");
 
     showScreen("dashboard");
 }
 
+/* ---------- SCREENS ---------- */
+
+function showScreen(screen){
+
+const main = document.getElementById("main");
+
+/* DASHBOARD */
+
+if(screen==="dashboard"){
+
+main.innerHTML = `
+
+<div class="topbar">
+
+<div class="stat">
+<div class="stat-title">Club</div>
+<div class="stat-value">${userTeam.name}</div>
+</div>
+
+<div class="stat">
+<div class="stat-title">Money</div>
+<div class="stat-value">$${money.toLocaleString()}</div>
+</div>
+
+<div class="stat">
+<div class="stat-title">Matchday</div>
+<div class="stat-value">${matchday}/38</div>
+</div>
+
+<div class="stat">
+<div class="stat-title">League Position</div>
+<div class="stat-value">
+${getTable().findIndex(t=>t.name===userTeam.name)+1}
+</div>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Season Goal</h2>
+
+<div class="sub">
+Win the league to beat the game.
+</div>
+
+<p>
+Your squad overall is <b>${avgRating(userTeam)}</b>.
+</p>
+
+${
+getTable()[0].name===userTeam.name && matchday > 8
+?
+`<div class="win">🏆 You're top of the league.</div>`
+:
+""
+}
+
+</div>
+
+`;
+}
+
+/* SQUAD */
+
+if(screen==="squad"){
+
+let squadRows = "";
+
+userTeam.players.forEach(p=>{
+
+const inXI = startingXI.find(x=>x.id===p.id);
+
+squadRows += `
+
+<tr draggable="true"
+ondragstart="dragPlayer('${p.id}')">
+
+<td>${p.name}</td>
+<td>${p.ovr}</td>
+<td>$${p.value.toLocaleString()}</td>
+
+<td>
+${inXI ? "Starting XI" : ""}
+</td>
+
+<td>
+<button class="red-btn"
+onclick="sellPlayer('${p.id}')">
+Sell
+</button>
+</td>
+
+</tr>
+`;
+
+});
+
+const pos = formations[formation];
+
+let pitchHTML = "";
+
+for(let i=0;i<11;i++){
+
+const p = startingXI[i];
+
+if(!p) continue;
+
+pitchHTML += `
+
+<div class="player"
+style="left:${pos[i][0]}%; top:${pos[i][1]}%"
+ondrop="dropPlayer(event, ${i})"
+ondragover="allowDrop(event)">
+
+${p.name.split(" ")[0]} (${p.ovr})
+
+</div>
+
+`;
+
+}
+
+main.innerHTML = `
+
+<div class="card">
+
+<h2>Squad Management</h2>
+
+<div class="instructions">
+Drag players from the squad table onto the pitch to replace players in your starting XI.
+</div>
+
+<div style="display:flex;gap:10px;flex-wrap:wrap">
+
+<button onclick="formation='4-3-3';showScreen('squad')">
+4-3-3
+</button>
+
+<button onclick="formation='4-4-2';showScreen('squad')">
+4-4-2
+</button>
+
+<button class="green-btn" onclick="autoBestXI()">
+Highest OVR XI
+</button>
+
+</div>
+
+<div class="pitch">
+
+${pitchHTML}
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Full Squad</h2>
+
+<table>
+
+<tr>
+<th>Name</th>
+<th>OVR</th>
+<th>Value</th>
+<th>Status</th>
+<th></th>
+</tr>
+
+${squadRows}
+
+</table>
+
+</div>
+
+`;
+}
+
+/* TRANSFERS */
+
+if(screen==="transfers"){
+
+let rows = "";
+
+transferMarket.forEach((p,index)=>{
+
+rows += `
+
+<tr>
+
+<td>${p.name}</td>
+<td>${p.ovr}</td>
+<td>$${p.value.toLocaleString()}</td>
+
+<td>
+<button class="green-btn"
+onclick="buyPlayer(${index})">
+Buy
+</button>
+</td>
+
+</tr>
+
+`;
+
+});
+
+main.innerHTML = `
+
+<div class="card">
+
+<h2>Transfer Market</h2>
+
+<div class="sub">
+Higher overall players cost more.
+</div>
+
+<table>
+
+<tr>
+<th>Name</th>
+<th>OVR</th>
+<th>Value</th>
+<th></th>
+</tr>
+
+${rows}
+
+</table>
+
+</div>
+
+`;
+}
+
+/* LEAGUE */
+
+if(screen==="league"){
+
+let rows = "";
+
+getTable().forEach((t,i)=>{
+
+rows += `
+
+<tr>
+
+<td>${i+1}</td>
+<td>${t.name}</td>
+<td>${t.points}</td>
+<td>${t.gf}</td>
+<td>${t.ga}</td>
+
+</tr>
+
+`;
+
+});
+
+main.innerHTML = `
+
+<div class="card">
+
+<h2>League Table</h2>
+
+<table>
+
+<tr>
+<th>Pos</th>
+<th>Club</th>
+<th>Pts</th>
+<th>GF</th>
+<th>GA</th>
+</tr>
+
+${rows}
+
+</table>
+
+</div>
+
+`;
+}
+
+/* SETTINGS */
+
+if(screen==="settings"){
+
+main.innerHTML = `
+
+<div class="card">
+
+<h2>Club Settings</h2>
+
+<div class="sub">
+Rename your club below.
+</div>
+
+<input id="clubName"
+value="${userTeam.name}">
+
+<button class="green-btn"
+onclick="renameClub()">
+Save Name
+</button>
+
+</div>
+
+`;
+
+}
+
+}
+
+/* ---------- CLUB ---------- */
+
+function renameClub(){
+
+const val = document.getElementById("clubName").value.trim();
+
+if(val.length < 2) return;
+
+userTeam.name = val;
+
+showScreen("settings");
+}
+
+/* ---------- TRANSFERS ---------- */
+
+function buyPlayer(index){
+
+const p = transferMarket[index];
+
+if(money < p.value){
+    alert("Not enough money");
+    return;
+}
+
+money -= p.value;
+
+userTeam.players.push(p);
+
+transferMarket.splice(index,1);
+
+showScreen("transfers");
+}
+
+function sellPlayer(id){
+
+const player = userTeam.players.find(p=>p.id===id);
+
+money += player.value;
+
+userTeam.players = userTeam.players.filter(p=>p.id!==id);
+
+startingXI = startingXI.filter(p=>p.id!==id);
+
+showScreen("squad");
+}
+
+/* ---------- DRAG ---------- */
+
+let draggedPlayer = null;
+
+function dragPlayer(id){
+    draggedPlayer = id;
+}
+
+function allowDrop(e){
+    e.preventDefault();
+}
+
+function dropPlayer(e,index){
+
+e.preventDefault();
+
+const player = userTeam.players.find(p=>p.id===draggedPlayer);
+
+startingXI[index] = player;
+
+showScreen("squad");
+}
+
+/* ---------- MATCHES ---------- */
+
+function teamStrength(team){
+
+if(team === userTeam){
+
+return startingXI.reduce((a,b)=>a+b.ovr,0)/11;
+
+}
+
+return avgRating(team);
+
+}
+
+function simNext(){
+
+if(matchday > 38){
+
+alert("Season finished");
+
+return;
+
+}
+
+for(let i=0;i<leagueTeams.length;i+=2){
+
+const home = leagueTeams[i];
+const away = leagueTeams[i+1];
+
+const hs = teamStrength(home) + Math.random()*12;
+const as = teamStrength(away) + Math.random()*12;
+
+const hg = Math.floor((hs/30) * Math.random()*3);
+const ag = Math.floor((as/30) * Math.random()*3);
+
+home.gf += hg;
+home.ga += ag;
+
+away.gf += ag;
+away.ga += hg;
+
+if(hg > ag){
+home.points += 3;
+}
+
+else if(ag > hg){
+away.points += 3;
+}
+
+else{
+home.points += 1;
+away.points += 1;
+}
+
+}
+
+matchday++;
+
+if(matchday > 38){
+
+const winner = getTable()[0];
+
+if(winner.name === userTeam.name){
+
+alert("🏆 YOU WON THE LEAGUE!");
+
+}else{
+
+alert("Season Over. " + winner.name + " won the league.");
+
+}
+
+}
+
+showScreen("dashboard");
+
+}
+
 function simSeason(){
 
-    while(currentMatchday <= 38){
-        simNext();
-    }
+while(matchday <= 38){
+simNext();
 }
+
+}
+
+/* ---------- START ---------- */
 
 showScreen("dashboard");
 
