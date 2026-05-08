@@ -8,264 +8,314 @@
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Inter, Arial, sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Inter,Arial,sans-serif;
 }
 
 body{
-    background:#0b0f14;
-    color:white;
-    overflow:hidden;
+background:
+radial-gradient(circle at top left,#24446e 0%,transparent 30%),
+radial-gradient(circle at bottom right,#166534 0%,transparent 30%),
+#0b1016;
+color:white;
+overflow:hidden;
 }
 
+/* LAYOUT */
+
 .container{
-    display:flex;
-    height:100vh;
+display:flex;
+height:100vh;
+}
+
+.sidebar{
+width:255px;
+background:rgba(20,25,35,.95);
+border-right:1px solid #334155;
+padding:20px;
+overflow-y:auto;
+backdrop-filter:blur(10px);
+}
+
+.main{
+flex:1;
+overflow-y:auto;
+padding:25px;
 }
 
 /* SIDEBAR */
 
-.sidebar{
-    width:250px;
-    background:#151a22;
-    border-right:1px solid #2c3442;
-    padding:20px;
-    overflow-y:auto;
-}
-
 .logo{
-    font-size:28px;
-    font-weight:800;
-    line-height:1.1;
-    margin-bottom:5px;
+font-size:29px;
+font-weight:900;
+line-height:1.05;
+margin-bottom:5px;
 }
 
 .logo-sub{
-    opacity:.6;
-    font-size:13px;
-    margin-bottom:25px;
+opacity:.65;
+font-size:13px;
+margin-bottom:25px;
 }
 
 .side-btn{
-    width:100%;
-    margin-bottom:10px;
-    border:none;
-    border-radius:12px;
-    padding:13px;
-    cursor:pointer;
-    background:#202734;
-    color:white;
-    font-size:15px;
-    transition:.2s;
+width:100%;
+padding:13px;
+margin-bottom:10px;
+border:none;
+border-radius:14px;
+background:#202938;
+color:white;
+cursor:pointer;
+font-size:15px;
+transition:.2s;
 }
 
 .side-btn:hover{
-    background:#2e3848;
+background:#334155;
+transform:translateY(-1px);
 }
 
 .green{
-    background:#1e7d45;
+background:#1f8b4d !important;
 }
 
 .green:hover{
-    background:#289c58;
+background:#28a35b !important;
 }
 
 .red{
-    background:#933737;
+background:#9c3a3a !important;
 }
 
 .red:hover{
-    background:#b64c4c;
+background:#bb4a4a !important;
 }
 
-/* MAIN */
-
-.main{
-    flex:1;
-    overflow-y:auto;
-    padding:25px;
-}
+/* CARDS */
 
 .card{
-    background:#161c25;
-    border:1px solid #2b3341;
-    border-radius:16px;
-    padding:22px;
-    margin-bottom:20px;
+background:
+linear-gradient(
+145deg,
+rgba(28,36,48,.96),
+rgba(18,24,34,.96)
+);
+
+border:1px solid #3b4b68;
+
+border-radius:20px;
+
+padding:22px;
+
+margin-bottom:22px;
+
+box-shadow:
+0 10px 25px rgba(0,0,0,.25);
+
+backdrop-filter:blur(8px);
 }
 
 .card h2{
-    margin-bottom:10px;
+margin-bottom:10px;
 }
 
 .sub{
-    opacity:.65;
-    font-size:14px;
-    margin-bottom:18px;
+opacity:.7;
+font-size:14px;
+margin-bottom:18px;
 }
 
-.instructions{
-    background:#202836;
-    border-left:4px solid #59a7ff;
-    padding:14px;
-    border-radius:10px;
-    margin-bottom:18px;
-    font-size:14px;
-    opacity:.95;
-}
+/* TOPBAR */
 
 .topbar{
-    display:flex;
-    gap:15px;
-    flex-wrap:wrap;
-    margin-bottom:20px;
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+margin-bottom:22px;
 }
 
 .stat{
-    background:#171e28;
-    border:1px solid #2b3444;
-    border-radius:14px;
-    padding:15px 20px;
-    min-width:180px;
+background:
+linear-gradient(
+135deg,
+rgba(42,56,78,.95),
+rgba(26,34,48,.95)
+);
+
+border:1px solid #4b5d78;
+
+border-radius:18px;
+
+padding:16px 20px;
+
+min-width:180px;
+
+box-shadow:
+0 8px 18px rgba(0,0,0,.2);
 }
 
 .stat-title{
-    font-size:12px;
-    opacity:.6;
+font-size:12px;
+opacity:.65;
 }
 
 .stat-value{
-    margin-top:6px;
-    font-size:22px;
-    font-weight:700;
+font-size:24px;
+font-weight:800;
+margin-top:5px;
 }
 
+/* TABLE */
+
 table{
-    width:100%;
-    border-collapse:collapse;
+width:100%;
+border-collapse:collapse;
 }
 
 th{
-    text-align:left;
-    background:#202734;
-    padding:12px;
+background:#222c3b;
+padding:13px;
+text-align:left;
 }
 
 td{
-    padding:12px;
-    border-bottom:1px solid #252e3b;
+padding:13px;
+border-bottom:1px solid #293241;
 }
 
 tr:hover{
-    background:#1d2430;
+background:#202938;
 }
 
+/* BUTTONS */
+
 button{
-    border:none;
-    border-radius:10px;
-    padding:9px 13px;
-    background:#2d3645;
-    color:white;
-    cursor:pointer;
-    transition:.2s;
+border:none;
+padding:9px 13px;
+border-radius:10px;
+background:#334155;
+color:white;
+cursor:pointer;
+transition:.2s;
 }
 
 button:hover{
-    background:#3b4758;
+background:#475569;
 }
 
+/* PITCH */
+
 .pitch{
-    width:100%;
-    height:560px;
-    background:#167135;
-    border:4px solid white;
-    border-radius:16px;
-    position:relative;
-    overflow:hidden;
-    margin-top:20px;
+width:100%;
+height:570px;
+background:#17743a;
+border:4px solid white;
+border-radius:18px;
+position:relative;
+overflow:hidden;
+margin-top:20px;
 }
 
 .pitch::before{
-    content:"";
-    position:absolute;
-    left:50%;
-    top:0;
-    width:3px;
-    height:100%;
-    background:white;
-    transform:translateX(-50%);
+content:"";
+position:absolute;
+left:50%;
+top:0;
+width:3px;
+height:100%;
+background:white;
+transform:translateX(-50%);
 }
 
 .player{
-    position:absolute;
-    width:105px;
-    height:40px;
-    background:white;
-    color:black;
-    border-radius:50px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:12px;
-    font-weight:700;
-    transform:translate(-50%,-50%);
-    cursor:grab;
+position:absolute;
+width:105px;
+height:40px;
+background:white;
+color:black;
+border-radius:50px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:12px;
+font-weight:800;
+transform:translate(-50%,-50%);
+cursor:grab;
+}
+
+/* UI */
+
+.instructions{
+background:#1e293b;
+border-left:4px solid #60a5fa;
+padding:14px;
+border-radius:12px;
+margin-bottom:18px;
+font-size:14px;
 }
 
 .notification{
-    position:fixed;
-    top:20px;
-    right:20px;
-    background:#1b2330;
-    border:1px solid #364153;
-    border-radius:14px;
-    padding:16px 20px;
-    min-width:280px;
-    opacity:0;
-    transform:translateY(-20px);
-    transition:.3s;
-    z-index:999;
-    pointer-events:none;
+position:fixed;
+top:20px;
+right:20px;
+background:#1e293b;
+border:1px solid #475569;
+padding:16px 20px;
+border-radius:16px;
+min-width:290px;
+z-index:999;
+opacity:0;
+transform:translateY(-20px);
+transition:.3s;
+pointer-events:none;
 }
 
 .notification.show{
-    opacity:1;
-    transform:translateY(0);
+opacity:1;
+transform:translateY(0);
 }
 
 .notify-title{
-    font-weight:700;
-    margin-bottom:5px;
+font-weight:800;
+margin-bottom:5px;
 }
 
 .notify-text{
-    opacity:.75;
-    font-size:14px;
+opacity:.75;
+font-size:14px;
 }
 
 input{
-    background:#202734;
-    border:1px solid #384255;
-    border-radius:10px;
-    padding:10px;
-    color:white;
-    width:250px;
-}
-
-.win{
-    color:gold;
-    font-size:30px;
-    font-weight:800;
-    margin-top:15px;
+background:#1e293b;
+border:1px solid #475569;
+color:white;
+padding:10px;
+border-radius:12px;
+width:250px;
 }
 
 .flex{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.win{
+color:gold;
+font-size:30px;
+font-weight:900;
+margin-top:15px;
+}
+
+.market-badge{
+padding:5px 10px;
+border-radius:999px;
+font-weight:800;
+color:black;
+display:inline-block;
 }
 
 </style>
@@ -273,8 +323,8 @@ input{
 <body>
 
 <div class="notification" id="notification">
-    <div class="notify-title" id="notifyTitle"></div>
-    <div class="notify-text" id="notifyText"></div>
+<div class="notify-title" id="notifyTitle"></div>
+<div class="notify-text" id="notifyText"></div>
 </div>
 
 <div class="container">
@@ -282,21 +332,21 @@ input{
 <div class="sidebar">
 
 <div class="logo">Glenn's<br>Football Manager</div>
-<div class="logo-sub">Simple Football Career Mode</div>
+<div class="logo-sub">Simple Career Mode Experience</div>
 
 <button class="side-btn" onclick="showScreen('dashboard')">Dashboard</button>
 <button class="side-btn" onclick="showScreen('squad')">Squad</button>
-<button class="side-btn" onclick="showScreen('transfers')">Transfers</button>
+<button class="side-btn" onclick="showScreen('transfers')">Transfer Market</button>
 <button class="side-btn" onclick="showScreen('league')">League</button>
 <button class="side-btn" onclick="showScreen('stats')">Stats</button>
 <button class="side-btn" onclick="showScreen('club')">Club</button>
 
-<hr style="margin:20px 0;border-color:#2c3442">
+<hr style="margin:20px 0;border-color:#334155">
 
 <button class="side-btn green" onclick="simNext()">Sim Match</button>
 <button class="side-btn" onclick="simSeason()">Sim Season</button>
 
-<hr style="margin:20px 0;border-color:#2c3442">
+<hr style="margin:20px 0;border-color:#334155">
 
 <button class="side-btn" onclick="saveGame()">Save Game</button>
 <button class="side-btn" onclick="loadGame()">Load Save</button>
@@ -310,36 +360,36 @@ input{
 
 <script>
 
-/* ------------------ NAMES ------------------ */
+/* ---------------- DATA ---------------- */
 
 const firstNames = [
 "Thiago","Enzo","Kylian","Luka","Nico","Joao","Rafael","Pedri",
 "Jude","Victor","Santiago","Kaoru","Alejandro","Zaire","Yusuf",
-"Leon","Mason","Emilio","Dante","Aurelien","Xavi","Benjamin"
+"Leon","Mason","Emilio","Dante","Aurelien","Xavi","Benjamin",
+"Rayan","Theo","Mateo","Cristian","Tariq","Elias"
 ];
 
 const lastNames = [
 "Silva","Walker","Mbappe","Costa","Bellingham","Garcia","Nakamura",
 "Rossi","Fernandez","Adebayo","Mendes","Kim","Diallo","Torres",
-"Alvarez","Reyes","Romero","Santos","Kovacic","Muller"
+"Alvarez","Reyes","Romero","Santos","Kovacic","Muller",
+"Moreira","Pereira","Ibrahim","Lopez","Costa","Sule"
 ];
-
-/* ------------------ DATA ------------------ */
 
 let leagueTeams = [];
 let transferMarket = [];
 
 let money = 80000000;
-let matchday = 1;
 let season = 1;
+let matchday = 1;
 let formation = "4-3-3";
 
 let history = {
-    seasonsPlayed:0,
-    titles:0,
-    wins:0,
-    draws:0,
-    losses:0
+seasonsPlayed:0,
+titles:0,
+wins:0,
+draws:0,
+losses:0
 };
 
 const formations = {
@@ -361,46 +411,54 @@ const formations = {
 };
 
 function randomName(){
-    return firstNames[Math.floor(Math.random()*firstNames.length)]
-    + " " +
-    lastNames[Math.floor(Math.random()*lastNames.length)];
+
+return firstNames[Math.floor(Math.random()*firstNames.length)]
++ " " +
+lastNames[Math.floor(Math.random()*lastNames.length)];
+
 }
 
 function createPlayer(){
 
-    const ovr = Math.floor(Math.random()*25)+65;
+let ovr = Math.floor(Math.random()*25)+65;
 
-    return{
-        id:crypto.randomUUID(),
-        name:randomName(),
-        ovr,
-        value:ovr * 1000000
-    };
+if(Math.random() < .08){
+ovr = Math.floor(Math.random()*8)+86;
+}
+
+return{
+id:crypto.randomUUID(),
+name:randomName(),
+ovr,
+value:ovr * 1000000
+};
+
 }
 
 function createLeague(){
 
-    leagueTeams = [];
+leagueTeams = [];
 
-    for(let i=0;i<20;i++){
+for(let i=0;i<20;i++){
 
-        const team = {
-            name:i===0 ? "Your Club" : "FC " + (i+1),
-            points:0,
-            gf:0,
-            ga:0,
-            wins:0,
-            draws:0,
-            losses:0,
-            players:[]
-        };
+const team = {
+name:i===0 ? "Your Club" : "FC " + (i+1),
+points:0,
+gf:0,
+ga:0,
+wins:0,
+draws:0,
+losses:0,
+players:[]
+};
 
-        for(let p=0;p<18;p++){
-            team.players.push(createPlayer());
-        }
+for(let p=0;p<18;p++){
+team.players.push(createPlayer());
+}
 
-        leagueTeams.push(team);
-    }
+leagueTeams.push(team);
+
+}
 
 }
 
@@ -416,63 +474,79 @@ generateTransferMarket();
 
 function generateTransferMarket(){
 
-    transferMarket = [];
+transferMarket = [];
 
-    for(let i=0;i<40;i++){
-        transferMarket.push(createPlayer());
-    }
+for(let i=0;i<120;i++){
+transferMarket.push(createPlayer());
+}
 
 }
 
-/* ------------------ UI ------------------ */
+/* ---------------- HELPERS ---------------- */
 
 function notify(title,text){
 
-    const box = document.getElementById("notification");
+const box = document.getElementById("notification");
 
-    document.getElementById("notifyTitle").innerText = title;
-    document.getElementById("notifyText").innerText = text;
+document.getElementById("notifyTitle").innerText = title;
+document.getElementById("notifyText").innerText = text;
 
-    box.classList.add("show");
+box.classList.add("show");
 
-    setTimeout(()=>{
-        box.classList.remove("show");
-    },3000);
+setTimeout(()=>{
+box.classList.remove("show");
+},3000);
 
 }
 
 function avgRating(team){
 
-    return Math.round(
-        team.players.reduce((a,b)=>a+b.ovr,0)
-        / team.players.length
-    );
+return Math.round(
+team.players.reduce((a,b)=>a+b.ovr,0)
+/
+team.players.length
+);
 
 }
 
 function getTable(){
 
-    return [...leagueTeams].sort((a,b)=>{
+return [...leagueTeams].sort((a,b)=>{
 
-        if(b.points !== a.points){
-            return b.points - a.points;
-        }
+if(b.points !== a.points){
+return b.points-a.points;
+}
 
-        return (b.gf-b.ga) - (a.gf-a.ga);
+return (b.gf-b.ga) - (a.gf-a.ga);
 
-    });
+});
 
 }
 
 function autoBestXI(){
 
-    startingXI = [...userTeam.players]
-    .sort((a,b)=>b.ovr-a.ovr)
-    .slice(0,11);
+startingXI = [...userTeam.players]
+.sort((a,b)=>b.ovr-a.ovr)
+.slice(0,11);
 
-    showScreen("squad");
+showScreen("squad");
 
 }
+
+function refreshTransferMarket(){
+
+generateTransferMarket();
+
+notify(
+"Market Refreshed",
+"120 new players entered the market."
+);
+
+showScreen("transfers");
+
+}
+
+/* ---------------- SCREENS ---------------- */
 
 function showScreen(screen){
 
@@ -515,7 +589,7 @@ ${getTable().findIndex(t=>t.name===userTeam.name)+1}
 <h2>Manager Overview</h2>
 
 <div class="instructions">
-Build the best squad possible, sign stars, and win the league title.
+Build your dream squad, sign stars, and win the league title.
 </div>
 
 <p><b>Squad Overall:</b> ${avgRating(userTeam)}</p>
@@ -600,7 +674,7 @@ main.innerHTML = `
 <h2>Starting XI</h2>
 
 <div class="instructions">
-Drag players from the squad list onto the pitch to replace players.
+Drag players onto the pitch to replace your lineup.
 </div>
 
 <div class="flex">
@@ -655,21 +729,38 @@ if(screen==="transfers"){
 
 let rows = "";
 
-transferMarket.forEach((player,index)=>{
+transferMarket
+.sort((a,b)=>b.ovr-a.ovr)
+.forEach((player,index)=>{
+
+let color =
+player.ovr >= 90 ? "#ffb703" :
+player.ovr >= 85 ? "#8ecae6" :
+player.ovr >= 80 ? "#90ee90" :
+"#d9d9d9";
 
 rows += `
 
 <tr>
 
 <td>${player.name}</td>
-<td>${player.ovr}</td>
+
+<td>
+<span class="market-badge"
+style="background:${color}">
+${player.ovr}
+</span>
+</td>
+
 <td>$${player.value.toLocaleString()}</td>
 
 <td>
+
 <button class="green"
 onclick="buyPlayer(${index})">
 Buy
 </button>
+
 </td>
 
 </tr>
@@ -682,11 +773,44 @@ main.innerHTML = `
 
 <div class="card">
 
-<h2>Transfer Market</h2>
+<div style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+gap:10px;
+margin-bottom:15px;
+">
+
+<div>
+
+<h2 style="margin-bottom:5px;">
+Transfer Market
+</h2>
+
+<div class="sub">
+120 players available with refreshed scouting lists.
+</div>
+
+</div>
+
+<button class="green"
+onclick="refreshTransferMarket()">
+Refresh Market
+</button>
+
+</div>
 
 <div class="instructions">
-Higher overall players cost more money.
+Elite players are color highlighted.
 </div>
+
+<div style="
+max-height:650px;
+overflow-y:auto;
+border-radius:14px;
+overflow:hidden;
+">
 
 <table>
 
@@ -700,6 +824,8 @@ Higher overall players cost more money.
 ${rows}
 
 </table>
+
+</div>
 
 </div>
 
@@ -824,7 +950,7 @@ main.innerHTML = `
 <h2>Manager Legacy</h2>
 
 <div class="instructions">
-Your long-term career stats across every season.
+Your overall career performance across all seasons.
 </div>
 
 <p><b>Draws:</b> ${history.draws}</p>
@@ -838,7 +964,26 @@ Your long-term career stats across every season.
 
 }
 
-/* ------------------ TRANSFERS ------------------ */
+/* ---------------- CLUB ---------------- */
+
+function renameClub(){
+
+const name = document.getElementById("clubName").value.trim();
+
+if(name.length < 2) return;
+
+userTeam.name = name;
+
+notify(
+"Club Renamed",
+"Your club is now " + name
+);
+
+showScreen("club");
+
+}
+
+/* ---------------- TRANSFERS ---------------- */
 
 function buyPlayer(index){
 
@@ -891,35 +1036,16 @@ showScreen("squad");
 
 }
 
-/* ------------------ CLUB ------------------ */
-
-function renameClub(){
-
-const name = document.getElementById("clubName").value.trim();
-
-if(name.length < 2) return;
-
-userTeam.name = name;
-
-notify(
-"Club Renamed",
-"Your club is now " + name
-);
-
-showScreen("club");
-
-}
-
-/* ------------------ DRAG ------------------ */
+/* ---------------- DRAG ---------------- */
 
 let draggedPlayer = null;
 
 function dragPlayer(id){
-    draggedPlayer = id;
+draggedPlayer = id;
 }
 
 function allowDrop(e){
-    e.preventDefault();
+e.preventDefault();
 }
 
 function dropPlayer(e,index){
@@ -936,11 +1062,11 @@ showScreen("squad");
 
 }
 
-/* ------------------ MATCH ENGINE ------------------ */
+/* ---------------- MATCHES ---------------- */
 
 function teamStrength(team){
 
-if(team === userTeam){
+if(team===userTeam){
 
 return startingXI.reduce((a,b)=>a+b.ovr,0)/11;
 
@@ -983,8 +1109,6 @@ away.ga += hg;
 if(hg > ag){
 
 home.points += 3;
-home.wins++;
-away.losses++;
 
 if(home===userTeam) history.wins++;
 if(away===userTeam) history.losses++;
@@ -994,8 +1118,6 @@ if(away===userTeam) history.losses++;
 else if(ag > hg){
 
 away.points += 3;
-away.wins++;
-home.losses++;
 
 if(away===userTeam) history.wins++;
 if(home===userTeam) history.losses++;
@@ -1006,9 +1128,6 @@ else{
 
 home.points++;
 away.points++;
-
-home.draws++;
-away.draws++;
 
 if(home===userTeam || away===userTeam){
 history.draws++;
@@ -1026,7 +1145,7 @@ history.seasonsPlayed++;
 
 const winner = getTable()[0];
 
-if(winner.name === userTeam.name){
+if(winner.name===userTeam.name){
 
 history.titles++;
 
@@ -1053,24 +1172,24 @@ showScreen("dashboard");
 function simSeason(){
 
 while(matchday <= 38){
-    simNext();
+simNext();
 }
 
 }
 
-/* ------------------ SAVE ------------------ */
+/* ---------------- SAVE ---------------- */
 
 function saveGame(){
 
-localStorage.setItem("gfm-save", JSON.stringify({
+localStorage.setItem("gfm-save",JSON.stringify({
 leagueTeams,
+transferMarket,
 money,
-matchday,
 season,
+matchday,
 formation,
 history,
-startingXI,
-transferMarket
+startingXI
 }));
 
 notify(
@@ -1096,13 +1215,13 @@ return;
 }
 
 leagueTeams = save.leagueTeams;
+transferMarket = save.transferMarket;
 money = save.money;
-matchday = save.matchday;
 season = save.season;
+matchday = save.matchday;
 formation = save.formation;
 history = save.history;
 startingXI = save.startingXI;
-transferMarket = save.transferMarket;
 
 userTeam = leagueTeams[0];
 
@@ -1115,7 +1234,7 @@ showScreen("dashboard");
 
 }
 
-/* ------------------ NEW SEASON ------------------ */
+/* ---------------- NEW SEASON ---------------- */
 
 function newSeason(){
 
@@ -1140,18 +1259,17 @@ generateTransferMarket();
 
 notify(
 "New Season Started",
-"Season " + season + " is underway."
+"Season " + season + " has begun."
 );
 
 showScreen("dashboard");
 
 }
 
-/* ------------------ START ------------------ */
+/* ---------------- START ---------------- */
 
 showScreen("dashboard");
 
 </script>
-
 </body>
 </html>
